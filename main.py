@@ -23,8 +23,11 @@ def get_building_info():
         "_type": "json"
     }
 
+    import urllib3
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    
     try:
-        response = requests.get(url, params=params)
+    response = requests.get(url, params=params, verify=False)
         data = response.json()
         item = data["response"]["body"]["items"]["item"][0]
 
